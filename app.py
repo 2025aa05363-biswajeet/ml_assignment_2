@@ -62,6 +62,17 @@ if __name__ == "__main__":
     model_name = st.selectbox("Select a model", options=list(model.keys()))
     st.write(f"You selected: {model_name}")
 
+    test_csv = pd.read_csv('test_dataset.csv')
+    test_csv = test_csv.to_csv(index=False)
+
+    st.download_button(
+    label="Download Test CSV",
+    data=test_csv,
+    file_name="test_data.csv",
+    mime="text/csv",
+    use_container_width=True
+)
+
     csv_file = st.file_uploader("Upload your CSV file", type=["csv"])
 
     if csv_file is not None:
